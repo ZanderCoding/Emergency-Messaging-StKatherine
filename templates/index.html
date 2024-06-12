@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Emergency Alert Sign Up</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            /* Custom CSS to adjust the carrier dropdown arrow position */
+            select {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><polygon points="0,0 10,10 20,0" fill="black"/></svg>') no-repeat right 0.75rem center;
+                background-size: 0.5rem;
+                padding-right: 2.5rem; /* Adjust this value to move the arrow inwards */
+                padding-top: 0.5rem
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100 flex items-center justify-center h-screen">
+        <div class="bg-white p-8 rounded shadow-md w-96">
+            <h1 class="text-2xl font-bold mb-4">Sign Up</h1>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div>
+                        {% for category, message in messages %}
+                            <p class="{{ category }} mb-4">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="mb-4">Please enter your phone number and select your carrier.</p>
+                {% endif %}
+            {% endwith %}
+            <form method="post">
+                <div class="mb-4">
+                    <label class="block text-gray-700">Phone Number (10 Digits):</label>
+                    <input type="tel" id="phone_number" name="phone_number" required class="w-full p-2 border border-gray-300 rounded mt-1" pattern="\d{10}">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Carrier:</label>
+                    <select name="carrier" required class="w-full p-2 border border-gray-300 rounded mt-1">
+                        <option value="verizon">Verizon</option>
+                        <option value="att">AT&T</option>
+                        <option value="tmobile">T-Mobile</option>
+                        <option value="cricket">Cricket Wireless</option>
+                        <option value="inland">Inland Cellular</option>
+                        <option value="consumer">Consumer Cellular</option>
+                        <option value="verizon">Straight Talk (Verizon)</option>
+                        <option value="att">Straight Talk (AT&T)</option>
+                        <option value="verizon">Xfinity Mobile</option>
+                        <option value="verizon">Page Plus</option>
+                        <option value="boost">Boost Mobile</option>
+                        <option value="metroPCS">MetroPCS</option>
+                        <option value="republic">Republic Wireless</option>
+                        <option value="google">Google Fi</option>
+                        <option value="uscellular">U.S. Cellular</option>
+                        <option value="cspire">C-Spire</option>
+                        <option value="virgin">Virgin Mobile</option>
+                        <option value="ting">Ting</option>
+                        <option value="nextel">Nextel</option>
+                        <option value="alltel">Alltel</option>
+                        <option value="telus">Telus</option>
+                        <option value="rogers">Rogers</option>
+                        <option value="bell">Bell</option>
+                        <option value="fido">Fido</option>
+                        <option value="koodo">Koodo</option>
+                        <option value="saskTel">SaskTel</option>
+                        <option value="solo">Solo Mobile</option>
+                        <option value="pcmobile">PC Mobile</option>
+                        <option value="mts">MTS</option>
+                        <option value="suncom">Suncom</option>
+                        <option value="viaero">Viaero</option>
+                        <option value="freedom">Freedom Mobile</option>
+                        <option value="public">Public Mobile</option>
+                        <option value="videotron">Videotron</option>
+                        <option value="eastlink">Eastlink</option>
+                    </select><br>   
+                </div>
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded w-full">Sign Up</button>
+            </form>
+            <p class="mt-4 text-gray-600">Please do not respond to the alert messages you receive. They are for emergency notifications only.</p>
+        </div>
+        <script>
+            document.getElementById('phone_number').addEventListener('input', function (e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        </script>
+    </body>
+</html>

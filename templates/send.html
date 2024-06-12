@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Send Emergency Message</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            function updateCharCount() {
+                var message = document.getElementById("message").value;
+                var charCount = message.length;
+                var chunkCount = Math.ceil(charCount / 100);
+
+                document.getElementById("charCount").innerHTML = charCount;
+                document.getElementById("chunkCount").innerHTML = chunkCount;
+            }
+        </script>
+    </head>
+    <body class="bg-gray-100 flex items-center justify-center h-screen">
+        <div class="bg-white p-8 rounded shadow-md w-96">
+            <h1 class="text-2xl font-bold mb-4">Send Emergency Message</h1>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="mb-4">
+                        {% for category, message in messages %}
+                            <p class="{{ category }} mb-4">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="mb-4">Please enter the password and message.</p>
+                {% endif %}
+            {% endwith %}
+            <form method="post" oninput="updateCharCount()">
+                <div class="mb-4">
+                    <label class="block text-gray-700">Password:</label>
+                    <input type="password" id="password" name="password" required class="w-full p-2 border border-gray-300 rounded mt-1">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Subject:</label>
+                    <input type="text" id="subject" name="subject" placeholder="Emergency Alert" class="w-full p-2 border border-gray-300 rounded mt-1">
+                    <small class="block text-gray-500">You can leave it blank for the default subject.</small>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Message:</label>
+                    <textarea id="message" name="message" rows="5" required class="w-full p-2 border border-gray-300 rounded mt-1"></textarea>
+                </div>
+                <div class="mb-4">
+                    <span class="block text-gray-700">Character Count (100 Per Message): <span id="charCount">0</span></span>
+                    <span class="block text-gray-700">Total Message Count: <span id="chunkCount">0</span></span>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded w-full">Send</button>
+            </form>
+        </div>
+    </body>
+</html>
