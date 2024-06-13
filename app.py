@@ -5,17 +5,17 @@ from email.mime.text import MIMEText
 
 app = Flask(__name__)
 # add sec variable
-app.secret_key = 'add your secret key here'
+app.secret_key = 'c169f75250783502531a0aac1f89a1fd'
 SMTP_SERVER = 'smtp.gmail.com'  # Use your SMTP server
 SMTP_PORT = 587  # TLS # 465 SSL  # Use the appropriate port
 # email to send the message from
 # add sec variable
-SMTP_USER = 'add your email here'
+SMTP_USER = 'st.katherine.alexandria@gmail.com'
 # password for email address
 # add sec variable
-SMTP_PASSWORD = 'add your email password code here'
+SMTP_PASSWORD = 'lssz bwzn aayj rigz'
 # add sec variable
-SEND_PASSWORD = 'add your send confirmation password'
+SEND_PASSWORD = 'StKatherine'
 
 
 @app.route('/', methods=['GET', 'POST'])
